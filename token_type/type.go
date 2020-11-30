@@ -10,4 +10,8 @@ const (
 	IntLiteral = "IntLiteral"
 	Int        = "Int"
 	Assignment = "Assignment"
+	Plus       = "Plus"
+	Minus      = "Minus"
+	Star       = "Star"
+	Slash      = "Slash"
 )

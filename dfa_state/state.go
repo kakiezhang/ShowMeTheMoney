@@ -13,4 +13,8 @@ const (
 	Int2
 	Int3
 	Equal
+	Plus
+	Minus
+	Star
+	Slash
 )

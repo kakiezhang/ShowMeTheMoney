@@ -70,6 +70,22 @@ func (token *Token) init(c rune) int {
 		newState = dfa_state.Equal
 		token.Type = token_type.Assignment
 		token.Text += s
+	} else if c == '+' {
+		newState = dfa_state.Plus
+		token.Type = token_type.Plus
+		token.Text += s
+	} else if c == '-' {
+		newState = dfa_state.Minus
+		token.Type = token_type.Minus
+		token.Text += s
+	} else if c == '*' {
+		newState = dfa_state.Star
+		token.Type = token_type.Star
+		token.Text += s
+	} else if c == '/' {
+		newState = dfa_state.Slash
+		token.Type = token_type.Slash
+		token.Text += s
 	}
 
 	fmt.Printf("after init: tokens[ %+v ]\n", tokens)
@@ -102,8 +118,8 @@ func (token *Token) tokenize(c rune, state int) int {
 			state = token.init(c)
 		}
 		break
-	case dfa_state.GE:
-	case dfa_state.Equal:
+	case dfa_state.GE, dfa_state.Equal, dfa_state.Plus,
+		dfa_state.Minus, dfa_state.Star, dfa_state.Slash:
 		state = token.init(c)
 		break
 	case dfa_state.IntLiteral:
@@ -143,7 +159,6 @@ func (token *Token) tokenize(c rune, state int) int {
 		break
 	case dfa_state.Int3:
 		if c == ' ' {
-			token.Text += s
 			state = token.init(c)
 		} else {
 			if utils.IsAlpha(c) || utils.IsDigit(c) {
