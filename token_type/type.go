@@ -4,14 +4,19 @@
 package token_type
 
 const (
-	Identifier = "Identifier"
-	GT         = "GT"
-	GE         = "GE"
+	Identifier = "Identifier" // 标识符
+
+	GT = "GT"
+	GE = "GE"
+
 	IntLiteral = "IntLiteral"
-	Int        = "Int"
+
+	Int = "Int"
+
 	Assignment = "Assignment"
-	Plus       = "Plus"
-	Minus      = "Minus"
-	Star       = "Star"
-	Slash      = "Slash"
+
+	Plus  = "Plus"
+	Minus = "Minus"
+	Star  = "Star"
+	Slash = "Slash"
 )

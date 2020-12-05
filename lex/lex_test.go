@@ -1,20 +1,29 @@
 package lex
 
-import "testing"
+import (
+	"calculater_interpreter/token"
+	"testing"
+)
 
-func TestLexiRecog(t *testing.T) {
+func TestLexiTokenize(t *testing.T) {
 	var line string
-	var token Token
 
 	line = "age>=45;"
 	line = "age >45;"
 	line = "int age= 45;"
 	line = "int1 = 45;"
 	line = "2+3+4+5;"
-	token = LexiRecog(line)
-	t.Logf("line: %s, token: %+v", line, token)
+	line = "2+3*4;"
+	line = "2/3-4;"
 
-	for _, v := range tokens {
-		t.Logf("%+v", v)
+	sl := NewSimpleLexi()
+	var str token.TokenReader
+	str = sl.Tokenize(line)
+	t.Logf("line: %s, token: %+v",
+		line, sl.token)
+
+	for token := str.Read(); token != nil; {
+		t.Logf("%+v", token)
+		token = str.Read()
 	}
 }
